@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Add Task";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>@ViewBag.Message</p>
+
+<form action="../Task/AddTaskToDb" method="post">
+    <input type="hidden" name="UserId" value="@Session["UserId"]" />
+
+    <input type="text" name="Description" placeholder="Description: " />
+    <br />
+
+    <input type="text" name="DueDate" placeholder="Due Date:" />
+    <br />
+
+    <input type="checkbox" name="Complete" placeholder="Completed: " />
+    <br />
+
+    <input type="submit" value="Add Task" />
+
+</form>

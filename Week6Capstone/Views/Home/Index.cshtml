@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Welcome to the Task List";
+}
+@if(DateTime.Now.Hour > 5 && DateTime.Now.Hour < 11)
+{
+    <h2>Good morning! @ViewBag.Title</h2>
+}
+else if(DateTime.Now.Hour >= 11 && DateTime.Now.Hour < 18)
+{
+    <h2>Good afternoon! @ViewBag.Title</h2>
+}
+else if(DateTime.Now.Hour > 18 && DateTime.Now.Hour < 21)
+{
+    <h2>Good evening! @ViewBag.Title</h2>
+}
+else
+{
+    <h2>It's late, you should get some sleep! @ViewBag.Title</h2>
+}
+<p>@ViewBag.UserAdded</p>
+<p>@ViewBag.LoginError</p>
+@Html.ActionLink("Log In","Index","Login")<br />
+@Html.ActionLink("Register", "Register", "Login")

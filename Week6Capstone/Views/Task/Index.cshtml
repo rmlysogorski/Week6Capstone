@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Task List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.ActionLink("Add a Task", "AddTask", "Task")
+
+<p>Perform an empty search to see all tasks.</p>
+<form action="../Task/SearchDesc" method="post">
+    <input type="text" name="searchString" />
+    <input type="submit" value="Search" />
+</form>
+
+<form action="../Task/MarkComplete" method="post">
+    <table class="table">
+        <tr>
+            <th><a href="../Task/Index">Description</a></th>
+            <th><a href="../Task/SortByDate">Due Date</a></th>
+            <th><a href="../Task/SortByComplete">Complete?</a></th>
+            <th></th>
+        </tr>
+        @foreach (var Task in ViewBag.TaskList)
+        {
+            <tr>
+                <td>@Task.Description</td>
+                <td>@Task.DueDate</td>
+                <td>
+                    @if (Task.Complete == true)
+                    {
+                        ViewBag.Completed = "Completed";
+                    }
+                    else
+                    {
+                        ViewBag.Completed = "Not Completed";
+                    }
+                    <input type="radio" name="Id" value="@Task.Id" />
+                    @ViewBag.Completed
+                </td>
+                <td>
+                    <a href="../Task/DeleteTask?TaskId=@Task.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <button type="submit" value="-1">Mark Complete</button>
+</form>
